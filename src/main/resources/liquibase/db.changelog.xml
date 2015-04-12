@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="1" author="bob">
+        <createTable tableName="department">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="active" type="boolean" defaultValueBoolean="true"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="bob">
+        <createTable tableName="employee">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="department_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="active" type="boolean" defaultValueBoolean="true"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="3" author="bob">
+        <addForeignKeyConstraint baseTableName="employee" baseColumnNames="department_id" constraintName="employee_fk1" referencedTableName="department" referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="4" author="bob">
+        <createTable tableName="asset_type">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="short_code" type="varchar(5)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="5" author="bob">
+        <createTable tableName="asset">
+            <column name="asset_type_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="employee_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="6" author="bob">
+        <addPrimaryKey tableName="asset" columnNames="asset_type_id, employee_id"/>
+    </changeSet>
+
+    <changeSet id="7" author="bob">
+        <addForeignKeyConstraint baseTableName="asset" baseColumnNames="asset_type_id" constraintName="asset_fk1" referencedTableName="asset_type" referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="8" author="bob">
+        <addForeignKeyConstraint baseTableName="asset" baseColumnNames="employee_id" constraintName="asset_fk2" referencedTableName="employee" referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="9" author="bob">
+        <createTable tableName="asset_log">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="asset_type_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="employee_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="when" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="10" author="bob">
+        <addForeignKeyConstraint baseTableName="asset_log" baseColumnNames="asset_type_id, employee_id" constraintName="asset_log_fk1" referencedTableName="asset" referencedColumnNames="asset_type_id, employee_id"/>
+    </changeSet>
+
+</databaseChangeLog>
