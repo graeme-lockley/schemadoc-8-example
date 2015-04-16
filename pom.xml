@@ -71,8 +71,8 @@
                     </dependency>
                     <dependency>
                         <groupId>za.co.no9</groupId>
-                        <artifactId>schemadoc-handler</artifactId>
-                        <version>8.0</version>
+                        <artifactId>schemadoc-8-handler</artifactId>
+                        <version>8.1-SNAPSHOT</version>
                     </dependency>
                 </dependencies>
                 <executions>
