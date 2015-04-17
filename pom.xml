@@ -62,7 +62,7 @@
             <plugin>
                 <groupId>za.co.no9</groupId>
                 <artifactId>jdbc-8-maven-plugin</artifactId>
-                <version>8.0</version>
+                <version>8.1-SNAPSHOT</version>
                 <dependencies>
                     <dependency>
                         <groupId>com.h2database</groupId>
