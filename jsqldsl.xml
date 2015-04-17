@@ -10,11 +10,10 @@
         </jdbc>
 
         <tables>
-            <include>
-                <schema>PUBLIC</schema>
-            </include>
+            <db-search>
+                <schema-pattern>PUBLIC</schema-pattern>
+            </db-search>
             <exclude>
-                <schema>PUBLIC</schema>
                 <table>DATABASECHANGE.*</table>
             </exclude>
         </tables>
