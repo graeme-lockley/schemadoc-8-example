@@ -33,9 +33,11 @@ http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
         </createTable>
     </changeSet>
 
+    <!-- The following relationship is captured through a manual foreign key within jsqldsl.xml
     <changeSet id="3" author="bob">
         <addForeignKeyConstraint baseTableName="employee" baseColumnNames="department_id" constraintName="employee_fk1" referencedTableName="department" referencedColumnNames="id"/>
     </changeSet>
+    -->
 
     <changeSet id="4" author="bob">
         <createTable tableName="asset_type">

@@ -17,6 +17,10 @@
                 <table>DATABASECHANGE.*</table>
             </exclude>
         </tables>
+
+        <foreign-keys>
+            <foreign-key from-table="MOVIES.PUBLIC.EMPLOYEE" from-name="EMPLOYEE_FK1" from-fields="DEPARTMENT_ID" to-table="MOVIES.PUBLIC.DEPARTMENT" to-fields="ID"/>
+        </foreign-keys>
     </source>
 
     <targets>
@@ -24,18 +28,9 @@
             <handler>za.co.no9.jdbcdry.tools.schemadoc.Handler</handler>
             <destination>target/schemadoc</destination>
             <properties>
-                <property>
-                    <name>driver</name>
-                    <value>za.co.no9.jdbcdry.drivers.H2</value>
-                </property>
-                <property>
-                    <name>template-output</name>
-                    <value>target/schemadoc/output.dot</value>
-                </property>
-                <property>
-                    <name>post-command</name>
-                    <value>dot -T png -o target/schemadoc/output.png target/schemadoc/output.dot</value>
-                </property>
+                <property name='driver' value='za.co.no9.jdbcdry.adaptor.H2'/>
+                <property name='template-output' value='target/schemadoc/output.dot'/>
+                <property name='post-command' value='dot -T png -o target/schemadoc/output.png target/schemadoc/output.dot'/>
             </properties>
         </target>
     </targets>
